@@ -13,9 +13,16 @@ import (
 	"github.com/Code-byme/e-commerce/internal/handlers"
 	"github.com/Code-byme/e-commerce/pkg/middleware"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	// Load environment variables from .env file
+	if err := godotenv.Load(); err != nil {
+		log.Printf("Warning: Error loading .env file: %v", err)
+		log.Println("Using system environment variables")
+	}
+
 	// Initialize database connection
 	if err := database.InitDatabase(); err != nil {
 		log.Fatal("Failed to connect to database:", err)
